@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Uma Pergunta Especial ❤️</title>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .container {
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        position: relative;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        color: #ff4d6d;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px 30px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    #sim {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #nao {
+        background-color: #999;
+        color: white;
+        position: absolute;
+    }
+
+    #mensagem {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #ff4d6d;
+        display: none;
+        animation: aparecer 1s ease forwards;
+    }
+
+    @keyframes aparecer {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .coração {
+        position: fixed;
+        color: red;
+        animation: subir 4s linear infinite;
+        font-size: 20px;
+    }
+
+    @keyframes subir {
+        from {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>💖 Posso ver pepeto amor? 💖</h1>
+    <p>Tô muito triste 😍</p>
+
+    <button id="sim">SIM 😍</button>
+    <button id="nao">NÃO 😢</button>
+
+    <!-- EDITE SUA MENSAGEM AQUI -->
+    <div id="mensagem">🥰 Sabia que você ia dizer sim! Te amo! 💕</div>
+</div>
+
+<script>
+    const btnNao = document.getElementById("nao");
+    const btnSim = document.getElementById("sim");
+    const mensagem = document.getElementById("mensagem");
+
+    function moverBotao() {
+        const largura = window.innerWidth - btnNao.offsetWidth;
+        const altura = window.innerHeight - btnNao.offsetHeight;
+
+        const x = Math.random() * largura;
+        const y = Math.random() * altura;
+
+        btnNao.style.left = x + "px";
+        btnNao.style.top = y + "px";
+    }
+
+    btnNao.addEventListener("mouseover", moverBotao);
+    btnNao.addEventListener("click", moverBotao);
+
+    btnSim.addEventListener("click", () => {
+        mensagem.style.display = "block";
+        criarCoracoes();
+    });
+
+    function criarCoracoes() {
+        setInterval(() => {
+            const coracao = document.createElement("div");
+            coracao.classList.add("coração");
+            coracao.innerHTML = "❤️";
+            coracao.style.left = Math.random() * 100 + "vw";
+            coracao.style.fontSize = (Math.random() * 20 + 10) + "px";
+            document.body.appendChild(coracao);
+
+            setTimeout(() => {
+                coracao.remove();
+            }, 4000);
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
